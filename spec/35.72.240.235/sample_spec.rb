@@ -22,3 +22,6 @@ describe service('nginx') do
 end
 
 # Ruby 2.7.3がインストールされているか
+describe command('sudo bash -lc "rbenv versions"') do
+  its(:stdout) { should match /ruby 2\.7\.3/ }
+end
