@@ -25,3 +25,8 @@ end
 describe command('sudo bash -lc "rbenv versions"') do
   its(:stdout) { should match /2.7.3/ }
 end
+
+# Ruby 2.7.3がglobal設定されているか
+describe command('sudo bash -lc "rbenv global"') do
+  its(:stdout) { should match /2.7.3/ }
+end
