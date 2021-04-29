@@ -22,9 +22,6 @@ describe service('nginx') do
 end
 
 # Ruby 2.7.3がインストールされているか
-<<<<<<< HEAD
 describe command('sudo bash -lc "rbenv versions"') do
   its(:stdout) { should match /2.7.3/ }
 end
-=======
->>>>>>> parent of c43785e... Rubyインストール追加
