@@ -1,28 +1,24 @@
 require 'spec_helper'
 
-describe package('httpd'), :if => os[:family] == 'redhat' do
+# Gitがインストールされているか
+describe package('git') do
   it { should be_installed }
 end
 
-describe package('apache2'), :if => os[:family] == 'ubuntu' do
+# Nginxがインストールされているか
+describe package('nginx') do
   it { should be_installed }
 end
 
-describe service('httpd'), :if => os[:family] == 'redhat' do
-  it { should be_enabled }
-  it { should be_running }
-end
-
-describe service('apache2'), :if => os[:family] == 'ubuntu' do
-  it { should be_enabled }
-  it { should be_running }
-end
-
-describe service('org.apache.httpd'), :if => os[:family] == 'darwin' do
-  it { should be_enabled }
-  it { should be_running }
-end
-
+# 80番ポートをListenしているか
 describe port(80) do
   it { should be_listening }
 end
+
+# Nginxが起動中かつ自動起動設定になっているか
+describe service('nginx') do
+  it { should be_enabled }
+  it { should be_running }
+end
+
+# Ruby 2.7.3がインストールされているか
